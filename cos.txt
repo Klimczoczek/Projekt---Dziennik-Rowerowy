@@ -1,0 +1,13 @@
+Strona do zapisywania postępów rowerowych
+-Single page
+
+- Dodawanie / edycja / usuwanie danych
+
+- api temperatury (pokazuje stopnie i czy warto jechać na rower)
+
+-strona główna -> dodawanie i lista wszystkich (sprawdza czy w danym dniu wykonaliśmy średni cel [tak - zielony / nie - czerwony]) i edycja
+
+- Podsumowanie -> cel ('reduce' sumuje wszyskie km | 'filter' pokazuje ile razy przebiliśmy średni cel | ) / ile % celu zrealizowano / edycja celu (ile chcesz na 1 dzień km oraz ile w ciągu miesiąca)
+
+- Informacje 
+
