@@ -15,10 +15,10 @@
 
     </nav>
 
-    <main id="w_add" >
-        <form onsubmit="return false">
+    <main id="w_add" style="display: none;">
+        <form onsubmit="return false" id="form_add">
             <label for="od">Punkt Startowy (miasto):</label>
-            <input type="text" id="od"> <br>
+            <input type="text" id="od" > <br>
             <label for="do">Punkt Końcowy (miasto):</label>
             <input type="text" id="do"> <br>
             <label for="ile">Czas trasy (godziny):</label>
@@ -31,7 +31,7 @@
         </form>
     </main>
 
-    <main id="w_pods">
+    <main id="w_pods" >
         <h2>Witaj,</h2>
         <h3 id="namesur">Imie Nazwisko</h3>
         <aside>
@@ -45,9 +45,20 @@
 
     </main>
 
-    <main id="w_edit"></main>
+    <main id="w_edit">
+        <form onsubmit="return false" id="form_edit">
+            <label for="e_imie">Imie:</label>
+            <input type="text" id="e_imie" > <br>
+            <label for="e_nazwisko">Nazwisko:</label>
+            <input type="text" id="e_nazwisko"> <br>
+            <label for="e_cel">Cel (km):</label>
+            <input type="number" min="0" id="e_cel"> <br>
+            <label for="e_rcel">Dzienny cel (km):</label>
+            <input type="number" min="0" id="e_rcel"> <br>
+            <input type="submit" id="edit_m" value="Edytuj!">
+        </form>
+    </main>
 
-    <main id="w_api"></main>
 
     <section id="w_show">
         <table id="tablica">

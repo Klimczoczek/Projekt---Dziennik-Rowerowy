@@ -8,16 +8,32 @@ const nmiesiace = ['Styczniu','Lutym','Marcu','Kwietniu','Maju','Czerwcu','Lipcu
 
 
 
-// localStorage.setItem('rcel',200);
 if((localStorage.getItem("id") === null)){
     localStorage.setItem('id',0);
 }
+// localStorage.setItem('rcel',200);
 // localStorage.setItem('cel',2000);
-// localStorage.setItem('name','Lukooooooosz');
-// localStorage.setItem('surname','Klima');
+localStorage.setItem('name','Lukooooooosz');
+localStorage.setItem('surname','Klima');
 
 
 
+
+const czywszystko = (formul) =>{
+    const alinput = Array.from(document.forms[formul].querySelectorAll('input'));
+    let czy = true;
+    alinput.pop()
+    alinput.map(cell=>{
+        // console.log(cell.value);
+        if(cell.value == '' && czy == true){
+            // console.log('puste')
+            czy = false;
+
+        }
+    })
+    console.log(czy)
+    // console.log(alinput)
+}
 
 
 
@@ -34,10 +50,6 @@ const render = () =>{
 
 //obliczanie
 
-
-const godizny = () =>{
-
-}
 
 
 
@@ -133,7 +145,6 @@ const create_pods = () =>{
     }
     if (ar_dystans.length > 0){
         p_wszystko.innerHTML = 'Cały dystans: '+ar_dystans.reduce((acc, cur) => acc + cur)+' km'
-        // console.log(ar_dystans.reduce((acc, cur) => acc + cur));
     }
     else{
         p_wszystko.innerHTML = 'Cały dystans: 0 km'
@@ -151,12 +162,57 @@ const create_pods = () =>{
 
     //cel -- !!!!!!! filter
     if(localStorage.getItem("rcel") === null ){
-        p_rcel.innerHTML = 'Brak danych o celu dziennym'
+        p_udal.innerHTML = 'Brak danych o celu dziennym'
     }
     else{
         p_udal.innerHTML = 'Udało ci się osiągnąć cel dzienny '+rcelos.filter(item => item >= localStorage.getItem('rcel')).length+' / '+localStorage.getItem('id')+' razy';
     }
 }
+
+//pobieranie wartosci z podsumowania
+document.querySelector("#edit").addEventListener("click", ()=>{
+        const e_imie = document.querySelector('#e_imie');
+        const e_nazwisko = document.querySelector('#e_nazwisko');
+        const e_cel = document.querySelector('#e_cel');
+        const e_rcel = document.querySelector('#e_rcel');
+
+        const rcel = localStorage.getItem('rcel')
+        const cel = localStorage.getItem('cel');
+        const name = localStorage.getItem('name');
+        const surname = localStorage.getItem('surname');
+
+        if(name != null){
+            e_imie.value = name;
+        }
+        if(surname != null){
+            e_nazwisko.value = surname;
+        }
+        if(cel != null){
+            e_cel.value = cel;
+        }
+        else{
+            e_cel.value = 0;
+        }
+        if(rcel != null){
+            e_rcel.value = rcel;
+        }
+        else{
+            e_rcel.value = 0;
+        }
+
+    });
+
+    document.querySelector("#edit_m").addEventListener("click", ()=>{
+        const e_imie = document.querySelector('#e_imie');
+        const e_nazwisko = document.querySelector('#e_nazwisko');
+        const e_cel = document.querySelector('#e_cel');
+        const e_rcel = document.querySelector('#e_rcel');
+
+        
+
+
+    });
+
 
 
 
@@ -219,9 +275,9 @@ const delfls = (id) =>{
 
     //to co się nie usuwa
     const rcel = localStorage.getItem('rcel')
-    const cel = localStorage.getItem('cel',2000);
-    const name = localStorage.getItem('name','Lukooooooosz');
-    const surname = localStorage.getItem('surname','Klima');
+    const cel = localStorage.getItem('cel');
+    const name = localStorage.getItem('name');
+    const surname = localStorage.getItem('surname');
 
     localStorage.clear();
     localStorage.setItem('id',x-1);
@@ -233,10 +289,20 @@ const delfls = (id) =>{
 
 
     //przywracanie
-    localStorage.setItem('rcel',rcel);
-    localStorage.setItem('cel',cel);
-    localStorage.setItem('name',name);
-    localStorage.setItem('surname',surname);
+    if(rcel != null){
+        localStorage.setItem('rcel',rcel);
+    }
+    if(cel != null){
+        localStorage.setItem('cel',cel);
+    }
+    if(name != null){
+        localStorage.setItem('name',name);
+    }
+    if(surname != null){
+        localStorage.setItem('surname',surname);
+    }
+    
+    
 
 
     render();
