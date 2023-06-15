@@ -13,9 +13,32 @@ if((localStorage.getItem("id") === null)){
 }
 // localStorage.setItem('rcel',200);
 // localStorage.setItem('cel',2000);
-localStorage.setItem('name','Lukooooooosz');
-localStorage.setItem('surname','Klima');
+// localStorage.setItem('name','Lukooooooosz');
+// localStorage.setItem('surname','Klima');
 
+
+
+//singlepage system
+const sp = (nr) =>{
+    const w_add = document.querySelector('#w_add');
+    const w_pods = document.querySelector('#w_pods');
+    const w_edit = document.querySelector('#w_edit');
+    if(nr == 0){
+        w_add.style.display = 'none';
+        w_pods.style.display = 'flex';
+        w_edit.style.display = 'none';
+    }
+    else if(nr == 1){
+        w_add.style.display = 'block';
+        w_pods.style.display = 'none';
+        w_edit.style.display = 'none';        
+    }
+    else if(nr == 2){
+        w_add.style.display = 'none';
+        w_pods.style.display = 'none';
+        w_edit.style.display = 'block';        
+    }
+}
 
 
 
@@ -32,6 +55,7 @@ const czywszystko = (formul) =>{
         }
     })
     console.log(czy)
+    return czy
     // console.log(alinput)
 }
 
@@ -46,6 +70,7 @@ const render = () =>{
         render_table(i);
     }
     create_pods()
+    getWeather()
 }
 
 //obliczanie
@@ -105,6 +130,7 @@ const create_pods = () =>{
     }
     else{
         p_name.innerHTML = localStorage.getItem("name")+" "+localStorage.getItem("surname");
+        p_name.style = "visibility: show;";
     }
 
     //czy jest cel
@@ -200,16 +226,34 @@ document.querySelector("#edit").addEventListener("click", ()=>{
             e_rcel.value = 0;
         }
 
+        sp(2);
+
     });
 
     document.querySelector("#edit_m").addEventListener("click", ()=>{
+        if(czywszystko('form_edit')){
+        const fedit_err = document.querySelector('#fedit_err');
         const e_imie = document.querySelector('#e_imie');
         const e_nazwisko = document.querySelector('#e_nazwisko');
         const e_cel = document.querySelector('#e_cel');
         const e_rcel = document.querySelector('#e_rcel');
 
-        
+        // fedit_err.style = 'display:none; color:red;';
+        fedit_err.style = "visibility: hidden;";
 
+        localStorage.setItem('name',e_imie.value);
+        localStorage.setItem('surname',e_nazwisko.value);
+        localStorage.setItem('cel',e_cel.value);
+        localStorage.setItem('rcel',e_rcel.value);
+
+        render();
+        sp(0);
+        }
+        else{
+            // fedit_err.style.removeProperty('display');
+            fedit_err.style = "visibility: show;";
+            fedit_err.style = 'color:red;'
+        }
 
     });
 
@@ -319,21 +363,25 @@ const getWeather = async () => {
     let data = await response.json()
     let tempera = Math.round(parseInt(data.main.temp))
     if (tempera >= 10){
-        wynik.innerHTML = `Dzisiaj jest idealna temperatura na rower: ${tempera} °C`
+        wynik.innerHTML = `Teraz jest idealna temperatura na rower: ${tempera} °C`
     }
     else{
-        wynik.innerHTML = `Dzisiaj nie jest najlepszy dzień na rower: ${tempera} °C (lepiej zabierz coś ciepłego)`
+        wynik.innerHTML = `Teraz nie jest najlepszy dzień na rower: ${tempera} °C (lepiej zabierz coś ciepłego)`
     }
     // console.log(data)
     // wynik.innerHTML = `Temperatura dla ${data.name} = ${Math.round(parseInt(data.main.temp))} °C`
     // console.log(data.main.temp)
 };
 
-getWeather()
+
 
 
 // dodawanie
 document.querySelector("#add").addEventListener("click", ()=>{
+    if(czywszystko('form_add')){
+    const fadd_err = document.querySelector('#fadd_err');
+    // fadd_err.style = 'display:none; color:red;';
+    fadd_err.style = "visibility: hidden;";
     //jeśli pusty
     if (localStorage.getItem("id") === null) {
         localStorage.setItem("id",1)
@@ -363,5 +411,11 @@ else{
     render()
     
 
+}
+}
+else{
+    // fadd_err.style.removeProperty('display');
+    fadd_err.style = "visibility: show;";
+    fadd_err.style = 'color:red;'
 }
 });

@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <title>Bicycle diary</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js' defer></script>
-</head>
-<body onload="render()">
-    <header>
-    </header>
-    
-    <nav>
-
-    </nav>
-
-    <main id="w_add" style="display: none;">
+    <head>
+        <meta charset='utf-8'>
+        <title>Bicycle diary</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+        <script src='main.js' defer></script>
+    </head>
+    <body onload="render()">
+        <header>
+            <h1>Dziennik Rowerowy</h1>
+        </header>
+        
+        <nav>
+            <ul>
+                <li><a onclick="sp(0)">Podsumowanie</a></li>
+                <li><a onclick="sp(1)">Dodaj wycieczke</a></li>
+            </ul>
+        </nav>
+        <div class="api"><p id="wynik" >Loading</p></div>
+       <main> 
+    <section id="w_add" style="display: none;" >
         <form onsubmit="return false" id="form_add">
             <label for="od">Punkt Startowy (miasto):</label>
             <input type="text" id="od" > <br>
             <label for="do">Punkt Końcowy (miasto):</label>
             <input type="text" id="do"> <br>
             <label for="ile">Czas trasy (godziny):</label>
-            <input type="number" id="ile" min="0"> <br>
+            <input type="number" id="ile" min="0" value="0"> <br>
             <label for="dystans">Dystans (km):</label>
-            <input type="number" id="dystans" min="0"> <br>
+            <input type="number" id="dystans" min="0" value="0"> <br>
             <label for="data">Data:</label>
             <input type="date" id="data"> <br>
             <input type="submit" id="add" value="Dodaj!">
+            <p id="fadd_err" style="display:none;">Wypełnij wszystkie komórki!</p>
         </form>
-    </main>
+    </section>
 
-    <main id="w_pods" >
+    <section id="w_pods"  >
         <h2>Witaj,</h2>
         <h3 id="namesur">Imie Nazwisko</h3>
         <aside>
-        <h4 id="cel">100/2000 km</h4>
-        <p id="rcel">250 km</p>
-        <p id="wszystko">Cały dystans: 21490km</p>
-        <p id="spre">Twoja średnia prędkość: 40 km/h</p>
-        <p id="udal">Udało ci się osiągnąć cel dzienny 20 / 40 razy</p>
+        <p id="cel">---/--- km</h4>
+        <p id="rcel">--- km</p>
+        <p id="wszystko">Cały dystans: ---km</p>
+        <p id="spre">Twoja średnia prędkość: --- km/h</p>
+        <p id="udal">Udało ci się osiągnąć cel dzienny --- / --- razy</p>
     </aside>
         <button id="edit">Edytuj</button>
 
-    </main>
+    </section>
 
-    <main id="w_edit">
+    <section id="w_edit" style="display: none;">
         <form onsubmit="return false" id="form_edit">
             <label for="e_imie">Imie:</label>
             <input type="text" id="e_imie" > <br>
@@ -56,11 +62,13 @@
             <label for="e_rcel">Dzienny cel (km):</label>
             <input type="number" min="0" id="e_rcel"> <br>
             <input type="submit" id="edit_m" value="Edytuj!">
+            <p id="fedit_err" style="display:none;">Wypełnij wszystkie komórki!</p>
         </form>
     </main>
 
 
     <section id="w_show">
+        <div class="tabbila">
         <table id="tablica">
             <tr>
                 <th>Data</th>
@@ -70,9 +78,10 @@
                 <th>Dystans</th>
             </tr>
         </table>
+    </div>
     </section>
-<button onclick="render()"></button>
+</main>
+<!-- <button onclick="render()"></button> -->
 
-<p id="wynik" >csd</p>
 </body>
 </html>

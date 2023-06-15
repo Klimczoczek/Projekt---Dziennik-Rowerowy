@@ -1,0 +1,7 @@
+Strona projektu zawiera dodawanie, usuwanie (wiersze tabeli) oraz edytowanie (karta celi).
+Jest single page.
+Api wykorzystuje temperature w celu powiedzenia czy warto iść na rower czy nie wypisując odpowiedzni komunikat.
+Metody tablicowe:
+map - sprawdzanie czy wypełnione są wszystkie inputy w formularzu
+reduce - suma wszystkich km 
+filter - pokazuje ile razy na wszystkie trasy osiągnęliśmy dzienny cel
